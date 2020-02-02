@@ -2,9 +2,7 @@
 
 #include "Mirf.h"
 
-Nrf24l Mirf = Nrf24l(10, 9); // ATmega,NUCLEO
-//Nrf24l Mirf = Nrf24l(15, 16); //ESP8266
-//Nrf24l Mirf = Nrf24l(PC6, PC7); //F4-Discovery
+Nrf24l Mirf = Nrf24l(10, 9);
 
 union MYDATA_t {
   byte value[32];
