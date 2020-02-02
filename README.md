@@ -144,8 +144,19 @@ Serial.print is output to PA9.
 
 
 
-
 - Generic STM32F407
+```
+Nrf24l Mirf = Nrf24l(PB0, PB1);
+ * VCC  3.3V
+ * MISO PB4
+ * MOSI PB5
+ * SCK  PB3
+ * CE   PB0
+ * CSN  PB1
+```
+
+Serial.print is output to PA9.
+
 
 
 
