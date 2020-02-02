@@ -96,3 +96,53 @@ Nrf24l Mirf = Nrf24l(PC6, PC7);
 
 Serial.print is output to PA2.
 
+
+- Generic STM32F103(BluePill/BlackPill/etc)
+```
+Nrf24l Mirf = Nrf24l(PB0, PB1);
+ * VCC  3.3V
+ * MISO PA6
+ * MOSI PA7
+ * SCK  PA5
+ * CE   PB0
+ * CSN  PB1
+```
+
+Serial.print is output to PA9.
+
+
+- Generic STM32F303
+
+
+
+
+- Generic STM32F401
+
+
+
+
+
+- Generic STM32F405
+
+
+
+
+
+- Generic STM32F407
+
+
+
+
+
+- ESP8266
+```
+Nrf24l Mirf = Nrf24l(15, 16);
+ * VCC  3.3V
+ * MISO IO12(D6)
+ * MOSI IO13(D7)
+ * SCK  IO14(D5)
+ * CE   IO15(D8)
+ * CSN  IO16(D0)
+```
+
+Serial.print is output to IO1.
