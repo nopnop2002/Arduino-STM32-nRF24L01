@@ -4,7 +4,7 @@ Arduino stm32 support files for nRF24L01 RF modules
 
 Arduino_Core_STM32 supports SPI library, but only works in Transaction SPI Mode.
 
-Leagcy Mode
+Legacy Mode
 ```
 SPI.begin()
 SPI.setClockDivider(divider)
@@ -21,7 +21,7 @@ SPI.transfer(data);
 SPI.endTransaction()
 ```
 
-This repository works with Transaction Style.
+This repository works with Transaction Mode.
 
 ----
 
