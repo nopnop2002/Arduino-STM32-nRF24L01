@@ -111,7 +111,7 @@ Nrf24l Mirf = Nrf24l(PB0, PB1);
 Serial.print is output to PA9.
 
 
-- Generic STM32F303(BackPill)
+- Generic STM32F303(BackPill F303CC)
 ```
 Nrf24l Mirf = Nrf24l(PB0, PB1);
  * VCC  3.3V
@@ -125,12 +125,18 @@ Nrf24l Mirf = Nrf24l(PB0, PB1);
 Serial.print is output to PA9.
 
 
+- Generic STM32F401(BlackPill F401CC)
+```
+Nrf24l Mirf = Nrf24l(PB0, PB1);
+ * VCC  3.3V
+ * MISO PA6
+ * MOSI PA7
+ * SCK  PA5
+ * CE   PB0
+ * CSN  PB1
+```
 
-
-- Generic STM32F401
-
-
-
+Serial.print is output to PA9.
 
 
 - Generic STM32F405
