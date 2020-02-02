@@ -42,6 +42,7 @@ Serial.print is output to Arduino Serial Monitor.
 
 
 - Arduino MEGA
+```
 Nrf24l Mirf = Nrf24l(10, 9);
  * VCC  3.3V
  * MISO 50
@@ -49,11 +50,13 @@ Nrf24l Mirf = Nrf24l(10, 9);
  * SCK  52
  * CE   10
  * CSN  9
+```
 
 Serial.print is output to Arduino Serial Monitor.
 
 
 - Arduino DUE
+```
 Nrf24l Mirf = Nrf24l(10, 9);
  * VCC  3.3V
  * MISO A.25
@@ -61,6 +64,7 @@ Nrf24l Mirf = Nrf24l(10, 9);
  * SCK  A.27
  * CE   D10
  * CSN  D9
+```
 
 Serial.print is output to Arduino Serial Monitor.
 
