@@ -139,9 +139,18 @@ Nrf24l Mirf = Nrf24l(PB0, PB1);
 Serial.print is output to PA9.
 
 
-- Generic STM32F405
+- Generic STM32F405(Adafruit Feather STM32F405 Express)
+```
+Nrf24l Mirf = Nrf24l(PB0, PB1);
+ * VCC  3.3V
+ * MISO PB14
+ * MOSI PB15
+ * SCK  PB13
+ * CE   PB0
+ * CSN  PB1
+```
 
-
+Serial.print is output to PB10.
 
 
 - Generic STM32F407(DIYMORE)
