@@ -23,7 +23,23 @@ SPI.endTransaction()
 
 This repository works with Transaction SPI Mode.
 
-----
+---
+
+# Memory usage
+
+- Transmitter
+```
+Sketch uses 3054 bytes (9%) of program storage space. Maximum is 32256 bytes.
+Global variables use 272 bytes (13%) of dynamic memory, leaving 1776 bytes for local variables. Maximum is 2048 bytes.
+```
+
+- Receiver
+```
+Sketch uses 2796 bytes (8%) of program storage space. Maximum is 32256 bytes.
+Global variables use 248 bytes (12%) of dynamic memory, leaving 1800 bytes for local variables. Maximum is 2048 bytes.
+```
+
+---
 
 # Tested board
 
