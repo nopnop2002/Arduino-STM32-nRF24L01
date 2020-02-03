@@ -169,7 +169,7 @@ Nrf24l Mirf = Nrf24l(PB8, PB9);
 Serial.print is output to PB10.
 
 
-- Generic STM32F407(DIYMORE)
+- Generic STM32F407(DIYMORE/BlackF407/etc)
 ```
 Nrf24l Mirf = Nrf24l(PB0, PB1);
  * VCC  3.3V
