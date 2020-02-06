@@ -41,7 +41,7 @@ Global variables use 248 bytes (12%) of dynamic memory, leaving 1800 bytes for l
 
 ---
 
-# Important point
+# Important
 When changing the settings of the nRF24L01, it is necessary to power cycle the nRF24L01 before executing.   
 Because nRF24L01 remembers the previous setting.   
 
