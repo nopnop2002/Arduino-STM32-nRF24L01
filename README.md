@@ -209,3 +209,8 @@ This library can communicate with [this](https://github.com/nopnop2002/Raspberry
 
 - esp-idf(esp32)   
 This library can communicate with [this](https://github.com/nopnop2002/esp-idf-mirf).
+
+# Important point
+When changing the settings of the nRF24L01, it is necessary to power cycle the nRF24L01 before executing.   
+Because nRF24L01 remembers the previous setting.   
+nRF24L01 does not have Software Reset function.   
