@@ -214,7 +214,7 @@ SPI Flash W25Q16 (U3)
 8 VCC 3V3 
 ```
 
-For unknown reasons, it is necessary to remap the SPI.
+It is necessary to remap SPI and separate NRF24 and on board flash.
 ```
 void setup()
 {
