@@ -44,6 +44,7 @@ Global variables use 248 bytes (12%) of dynamic memory, leaving 1800 bytes for l
 # Important
 When changing the settings of the nRF24L01, it is necessary to power cycle the nRF24L01 before executing.   
 Because nRF24L01 remembers the previous setting.   
+nRF24L01 does not have Software Reset function.   
 
 ---
 
@@ -175,7 +176,7 @@ Nrf24l Mirf = Nrf24l(PB8, PB9);
 Serial.print is output to PB10.
 
 
-- Generic STM32F407(DIYMORE/BlackF407/etc)
+- Generic STM32F407(DIYMORE)
 ```
 Nrf24l Mirf = Nrf24l(PB0, PB1);
  * VCC  3.3V
@@ -224,7 +225,3 @@ This library can communicate with [this](https://github.com/nopnop2002/Raspberry
 - esp-idf(esp32)   
 This library can communicate with [this](https://github.com/nopnop2002/esp-idf-mirf).
 
-# Important
-When changing the settings of the nRF24L01, it is necessary to power cycle the nRF24L01 before executing.   
-Because nRF24L01 remembers the previous setting.   
-nRF24L01 does not have Software Reset function.   
