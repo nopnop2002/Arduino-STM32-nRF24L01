@@ -190,6 +190,53 @@ Nrf24l Mirf = Nrf24l(PB0, PB1);
 Serial.print is output to PA9.
 
 
+- Generic STM32F407(BLACK F407VE)
+These boards share SPI with NRF24 connector and on board flash.    
+```
+NRF24L01 (JP2)
+1 GND
+2 3V3
+3 PB6 NRF_CE
+4 PB7 NRF_CS
+5 PB3 SPI1_SCK
+6 PB5 SPI1_MOSI
+7 PB4 SPI1_MISO
+8 PB8 NRF_IRQ
+
+SPI Flash W25Q16 (U3)
+1 PB0 F_CS
+2 PB4 SPI1_MISO
+3 WP 3V3
+4 GND
+5 PB5 SPI1_MOSI
+6 PB3 SPI1_SCK
+7 HOLD 3V3
+8 VCC 3V3 
+```
+
+For unknown reasons, it is necessary to remap the SPI.
+```
+void setup()
+{
+  SPI.setMOSI(PB15);
+  SPI.setMISO(PB14);
+  SPI.setSCLK(PB13);
+  SPI.setSSEL(PB12);
+```
+
+```
+Nrf24l Mirf = Nrf24l(PB0, PB1);
+ * VCC  3.3V
+ * MISO PB14
+ * MOSI PB15
+ * SCK  PB13
+ * CE   PB0
+ * CSN  PB1
+```
+
+Serial.print is output to PA9.
+
+
 - ESP8266
 ```
 Nrf24l Mirf = Nrf24l(15, 16);
