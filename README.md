@@ -17,7 +17,7 @@ SPI.transfer(data);
 
 - Transaction SPI Mode   
 SPI speed NOT depends on the CPU frequency.   
-It also works correctly with STM32
+It also works correctly with STM32.
 ```
 SPI.begin()
 SPI.beginTransaction(SPISettings(speed, order, mode))
