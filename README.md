@@ -5,7 +5,8 @@ Arduino stm32 support files for nRF24L01 RF modules
 Arduino_Core_STM32 supports SPI library, but only works in Transaction SPI Mode.
 
 - Legacy SPI Mode   
-SPI speed depends on the CPU frequency.
+SPI speed depends on the CPU frequency.   
+STM32 does not work because it has various CPU frequencies.
 ```
 SPI.begin()
 SPI.setClockDivider(divider)
@@ -15,7 +16,8 @@ SPI.transfer(data);
 ```
 
 - Transaction SPI Mode   
-SPI speed NOT depends on the CPU frequency.
+SPI speed NOT depends on the CPU frequency.   
+It also works correctly with STM32
 ```
 SPI.begin()
 SPI.beginTransaction(SPISettings(speed, order, mode))
