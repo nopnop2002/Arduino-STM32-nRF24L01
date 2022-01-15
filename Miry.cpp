@@ -163,6 +163,7 @@ extern void Nrf24l::getData(uint8_t * data)
   //  repeat from step 1)."
   // So if we're going to clear RX_DR here, we need to check the RX FIFO
   // in the dataReady() function
+#if 0
   uint8_t value;
   readRegister(RF_SETUP, &value, 1);
   //Serial.print("getData(1)=0x");
@@ -172,6 +173,8 @@ extern void Nrf24l::getData(uint8_t * data)
   //Serial.println(value, HEX);
   //configRegister(STATUS, (1 << RX_DR)); // Reset status register
   configRegister(STATUS, value); // Reset status register
+#endif
+  configRegister(STATUS, (1 << RX_DR)); // Reset status register
 }
 
 void Nrf24l::configRegister(uint8_t reg, uint8_t value)
