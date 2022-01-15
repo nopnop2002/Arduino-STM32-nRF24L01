@@ -451,9 +451,9 @@ void Nrf24l::printDetails()
   if (crclength ==RF24_CRC_DISABLED) {
     printf("CRC Length\t = DISABLED\n");
   } else if (crclength == RF24_CRC_8) {
-    printf("CRC Length\t = 1 byte\n");
+    printf("CRC Length\t = 8 bits\n");
   } else if (crclength == RF24_CRC_16) {
-    printf("CRC Length\t = 2 byte\n");
+    printf("CRC Length\t = 16 bits\n");
   }
   //printf("getPALevel()=%d\n",getPALevel());
   uint8_t palevel = getPALevel();
