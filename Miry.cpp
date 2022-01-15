@@ -407,12 +407,12 @@ void Nrf24l::setRetransmitDelay(uint8_t val) //Set Auto Retransmit Delay 0=250us
 {
   uint8_t value;
   readRegister(SETUP_RETR, &value, 1);
-  Serial.print("setRetransmitDelay(1)=0x");
-  Serial.println(value, HEX);
+  //Serial.print("setRetransmitDelay(1)=0x");
+  //Serial.println(value, HEX);
   value = value & 0x0F;
   value = value | (val << ARD);
-  Serial.print("setRetransmitDelay(2)=0x");
-  Serial.println(value, HEX);
+  //Serial.print("setRetransmitDelay(2)=0x");
+  //Serial.println(value, HEX);
   configRegister(SETUP_RETR, value);
 }
 
