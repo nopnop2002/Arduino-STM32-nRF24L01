@@ -36,6 +36,7 @@ void setup()
 void loop()
 {
   sprintf(mydata.now_time,"now is %lu",micros());
+  unsigned long startMillis = millis();
   Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
   //Test you send successfully
@@ -49,8 +50,12 @@ void loop()
       if (Mirf.dataReady()) break;
     }
     Mirf.getData(mydata.value);
-    Serial.print("Got response: ");
-    Serial.println(mydata.now_time);
+    unsigned long diffMillis = millis() - startMillis;
+    Serial.print("Got response:");
+    Serial.print(mydata.now_time);
+    Serial.print(" Elapsed:");
+    Serial.print(diffMillis);
+    Serial.println(" mSec");
 
   } else {
     Serial.println("Send fail:");
