@@ -26,7 +26,8 @@ void setup()
   // Set RF output power in TX mode
   Mirf.setOutputRF_PWR(2);
 
-  // Set RF Data Ratio 
+  // Set RF Data Ratio
+  // It must be the same value as the other party's value.
   Mirf.setSpeedDataRates(0);
 
   // Print current settings
