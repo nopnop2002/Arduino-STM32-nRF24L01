@@ -18,10 +18,15 @@ void setup()
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
   //Set your own address (sender address) using 5 characters
-  Mirf.setRADDR((byte *)"ABCDE");
   Mirf.payload = sizeof(mydata.value);
   Mirf.channel = 90;              //Set the channel used
   Mirf.config();
+
+  //Set your own address using 5 characters
+  Mirf.setRADDR((byte *)"ABCDE");
+
+  //Set the receiver address using 5 characters
+  Mirf.setTADDR((byte *)"FGHIJ");
 
   // Set RF output power in TX mode
   Mirf.setOutputRF_PWR(2);
@@ -40,7 +45,6 @@ void setup()
 
 void loop()
 {
-  Mirf.setTADDR((byte *)"FGHIJ");           //Set the receiver address
   sprintf(mydata.now_time,"now is %lu",micros());                      //0-255 random number
   Mirf.send(mydata.value);                //Send instructions, send random number value
   Serial.print("Wait for sending.....");

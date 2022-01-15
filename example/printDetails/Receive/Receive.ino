@@ -17,10 +17,12 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.setRADDR((byte *)"FGHIJ"); //Set your own address (receiver address) using 5 characters
   Mirf.payload = sizeof(mydata.value);
   Mirf.channel = 90;             //Set the used channel
   Mirf.config();
+
+  //Set your own address using 5 characters
+  Mirf.setRADDR((byte *)"FGHIJ");
 
   // Set RF Data Ratio
   // It must be the same value as the other party's value.
