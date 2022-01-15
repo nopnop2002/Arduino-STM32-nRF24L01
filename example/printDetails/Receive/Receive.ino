@@ -31,7 +31,7 @@ void setup()
   // Print current settings
   printf_begin();
   Mirf.printDetails();
-  Serial.println("Listening...");  //Start listening to received data
+  Serial.println("Listening...");
 }
 
 void loop()
