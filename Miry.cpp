@@ -280,7 +280,7 @@ bool Nrf24l::isSend() {
   if (PTX) {
     while(1) {
       status = getStatus();
-      //Serial.print("status:");
+      //Serial.print("status:0x");
       //Serial.println(status,HEX);
       /*
         if sending successful (TX_DS) or max retries exceded (MAX_RT).
@@ -400,9 +400,21 @@ void Nrf24l::setSpeedDataRates(uint8_t val) //Select between the high speed data
     //configRegister(RF_SETUP,	(val << RF_DR_HIGH) );
     configRegister(RF_SETUP, value);
   }
+
 }
 
-
+void Nrf24l::setRetransmitDelay(uint8_t val) //Set Auto Retransmit Delay 0=250us, 1=500us, ... 15=4000us
+{
+  uint8_t value;
+  readRegister(SETUP_RETR, &value, 1);
+  Serial.print("setRetransmitDelay(1)=0x");
+  Serial.println(value, HEX);
+  value = value & 0x0F;
+  value = value | (val << ARD);
+  Serial.print("setRetransmitDelay(2)=0x");
+  Serial.println(value, HEX);
+  configRegister(SETUP_RETR, value);
+}
 
 void Nrf24l::printDetails()
 {
@@ -451,6 +463,10 @@ void Nrf24l::printDetails()
   } else if (palevel == 3) {
     printf("PA Power\t = 0dBm\n");
   }
+  //printf("getRetransmitDelay()=%d\n",getRetransmitDelay());
+  uint8_t retransmit = getRetransmitDelay();
+  int16_t delay = (retransmit+1)*250;
+  printf("Retransmit\t = %d us\n", delay);
 
 }
 
@@ -547,5 +563,12 @@ uint8_t Nrf24l::getPALevel()
   //printf("RF_SETUP=%x\n",level);
   level = (level & (_BV(RF_PWR_LOW) | _BV(RF_PWR_HIGH))) >> 1;
   return (level);
+}
+
+uint8_t Nrf24l::getRetransmitDelay()
+{
+  uint8_t value;
+  readRegister(SETUP_RETR, &value, 1);
+  return (value >> 4);
 }
 
