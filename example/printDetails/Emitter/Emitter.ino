@@ -30,6 +30,9 @@ void setup()
   // It must be the same value as the other party's value.
   Mirf.setSpeedDataRates(0);
 
+  // Set Auto Retransmit Delay
+  Mirf.setRetransmitDelay(0x1);
+
   // Print current settings
   printf_begin();
   Mirf.printDetails();

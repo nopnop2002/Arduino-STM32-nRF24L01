@@ -1,4 +1,4 @@
 # printDetails
 
-![printDetails](https://user-images.githubusercontent.com/6020549/149608379-f3c3b63f-7dd1-49c5-91e0-5dde8b6caf76.jpg)
+![printDetails](https://user-images.githubusercontent.com/6020549/149610569-f6a24a92-eaba-4016-9288-886e559d2885.jpg)
 
