@@ -2,7 +2,7 @@
 
 #include "Mirf.h"
 
-Nrf24l Mirf = Nrf24l(10, 9);
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
 byte value[4];
 
@@ -11,11 +11,12 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  //Set your own address (sender address) using 5 characters
-  Mirf.setTADDR((byte *)"Motor");
   Mirf.payload = sizeof(value);
   Mirf.channel = 90;              //Set the channel used
   Mirf.config();
+  
+  //Set the receiver address using 5 characters
+  Mirf.setTADDR((byte *)"FGHIJ");
 }
 
 void loop()
@@ -23,8 +24,8 @@ void loop()
   value[0] = 0;
   value[1] = 1;
   value[2] = 2;
-  value[3] = random(255);                      //0-255 random number
-  Mirf.send(value);                //Send instructions, send random number value
+  value[3] = random(255); //0-255 random number
+  Mirf.send(value);
   Serial.print("Wait for sending.....");
   //Test you send successfully
   if (Mirf.isSend()) {

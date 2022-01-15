@@ -2,7 +2,7 @@
 
 #include "Mirf.h"
 
-Nrf24l Mirf = Nrf24l(10, 9);
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
 union MYDATA_t {
   byte value[32];
@@ -16,18 +16,18 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  //Set your own address (sender address) using 5 characters
-  Mirf.setRADDR((byte *)"ABCDE");
   Mirf.payload = sizeof(mydata.value);
   Mirf.channel = 90;              //Set the channel used
   Mirf.config();
+
+  //Set the receiver address using 5 characters
+  Mirf.setTADDR((byte *)"FGHIJ");
 }
 
 void loop()
 {
-  Mirf.setTADDR((byte *)"FGHIJ");           //Set the receiver address
-  sprintf(mydata.now_time,"now is %lu",micros());                      //0-255 random number
-  Mirf.send(mydata.value);                //Send instructions, send random number value
+  sprintf(mydata.now_time,"now is %lu",micros());
+  Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
   //Test you send successfully
   if (Mirf.isSend()) {

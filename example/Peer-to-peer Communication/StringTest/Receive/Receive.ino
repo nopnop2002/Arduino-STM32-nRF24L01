@@ -2,7 +2,7 @@
 
 #include "Mirf.h"
 
-Nrf24l Mirf = Nrf24l(10, 9);
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
 union MYDATA_t {
   byte value[32];
@@ -16,11 +16,14 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.setRADDR((byte *)"FGHIJ"); //Set your own address (receiver address) using 5 characters
   Mirf.payload = sizeof(mydata.value);
   Mirf.channel = 90;             //Set the used channel
   Mirf.config();
-  Serial.println("Listening...");  //Start listening to received data
+
+  //Set your own address using 5 characters
+  Mirf.setRADDR((byte *)"FGHIJ");
+  
+  Serial.println("Listening...");
 }
 
 void loop()
