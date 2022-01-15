@@ -28,7 +28,7 @@ void setup()
 void loop()
 {
   mydata.now_time = micros();
-  Mirf.send(mydata.value); //Send instructions
+  Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
   //Test you send successfully
   if (Mirf.isSend()) {
