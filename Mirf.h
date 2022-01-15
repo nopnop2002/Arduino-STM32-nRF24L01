@@ -58,6 +58,10 @@
 #define RX_PW_P5    0x16
 #define FIFO_STATUS 0x17
 
+// nRF24l01+ stuff
+#define DYNPD       0x1C
+#define FEATURE     0x1D
+
 /* Bit Mnemonics */
 #define MASK_RX_DR  6
 #define MASK_TX_DS  5
@@ -81,8 +85,11 @@
 #define AW          0
 #define ARD         4
 #define ARC         0
+#define RF_DR_LOW   5
 #define PLL_LOCK    4
-#define RF_DR       3
+#define RF_DR_HIGH  3
+#define RF_PWR_LOW  1
+#define RF_PWR_HIGH 2
 #define RF_PWR      1
 #define LNA_HCURR   0
 #define RX_DR       6
@@ -112,6 +119,31 @@
 #define mirf_ADDR_LEN	5
 #define mirf_CONFIG ((1<<EN_CRC) | (0<<CRCO) )
 
+
+/**
+ * Data rate.  How fast data moves through the air.
+ *
+ * For use with getDataRate()
+ */
+typedef enum {
+    RF24_DR_1MBPS = 0,
+    RF24_DR_2MBPS,
+    RF24_DR_250KBPS
+} rf24_datarate_e;
+
+/**
+ * CRC Length.  How big (if any) of a CRC is included.
+ *
+ * For use with setCRCLength()
+ */
+typedef enum {
+    RF24_CRC_DISABLED = 0,
+    RF24_CRC_8,
+    RF24_CRC_16
+} rf24_crclength_e;
+
+
+
 class Nrf24l {
   public:
      Nrf24l(uint8_t cs_pin, uint8_t csn_pin);
@@ -140,6 +172,16 @@ class Nrf24l {
     void powerUpRx();
     void powerUpTx();
     void powerDown();
+    void setOutputRF_PWR(uint8_t val);
+    void setSpeedDataRates( uint8_t val);
+    void printDetails();
+    void print_status(uint8_t status);
+    void print_address_register(const char* name, uint8_t reg, uint8_t qty);
+    void print_byte_register(const char* name, uint8_t reg, uint8_t qty);
+    uint8_t getDataRate();
+    uint8_t getCRCLength();
+    uint8_t getPALevel();
+
 
     void csnHi();
     void csnLow();

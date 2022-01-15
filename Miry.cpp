@@ -163,7 +163,15 @@ extern void Nrf24l::getData(uint8_t * data)
   //  repeat from step 1)."
   // So if we're going to clear RX_DR here, we need to check the RX FIFO
   // in the dataReady() function
-  configRegister(STATUS, (1 << RX_DR)); // Reset status register
+  uint8_t value;
+  readRegister(RF_SETUP, &value, 1);
+  //Serial.print("getData(1)=0x");
+  //Serial.println(value, HEX);
+  value = value | (1 << RX_DR);
+  //Serial.print("getData(2)=0x");
+  //Serial.println(value, HEX);
+  //configRegister(STATUS, (1 << RX_DR)); // Reset status register
+  configRegister(STATUS, value); // Reset status register
 }
 
 void Nrf24l::configRegister(uint8_t reg, uint8_t value)
@@ -340,3 +348,204 @@ void Nrf24l::powerDown() {
   ceLow();
   configRegister(CONFIG, mirf_CONFIG );
 }
+
+
+
+void Nrf24l::setOutputRF_PWR(uint8_t val) //Set tx power : 0=-18dBm,1=-12dBm,2=-6dBm,3=0dBm,
+{
+  if (val > 3) return;
+
+  //Serial.print("setOutputRF_PWR val=");
+  //Serial.println(val);
+  uint8_t value;
+  readRegister(RF_SETUP, &value, 1);
+  //Serial.print("setOutputRF_PWR(1)=0x");
+  //Serial.println(value, HEX);
+
+  value = value & 0xF9;
+  value = value | (val<< RF_PWR);
+  //Serial.print("setOutputRF_PWR(2)=0x");
+  //Serial.println(value, HEX);
+
+  //configRegister(RF_SETUP,	(val<< RF_PWR) );
+  configRegister(RF_SETUP, value);
+}
+
+void Nrf24l::setSpeedDataRates(uint8_t val) //Select between the high speed data rates:0=1Mbps, 1=2Mbps, 2=250Kbps
+{
+  if (val > 2) return;
+
+  //Serial.print("setSpeedDataRates val=");
+  //Serial.println(val);
+  uint8_t value;
+  readRegister(RF_SETUP, &value, 1);
+  //Serial.print("setSpeedDataRates(1)=0x");
+  //Serial.println(value, HEX);
+
+  if(val == 2)
+  {
+    value = value | 0x20;
+    value = value & 0xF7;
+    //Serial.print("setSpeedDataRates(2)=0x");
+    //Serial.println(value, HEX);
+    //configRegister(RF_SETUP,	(1 << RF_DR_LOW) );
+    configRegister(RF_SETUP, value);
+  }
+  else
+  {
+    value = value & 0xD7;
+    value = value | (val << RF_DR_HIGH);
+    //Serial.print("setSpeedDataRates(2)=0x");
+    //Serial.println(value, HEX);
+    //configRegister(RF_SETUP,	(val << RF_DR_HIGH) );
+    configRegister(RF_SETUP, value);
+  }
+}
+
+
+
+void Nrf24l::printDetails()
+{
+  print_status(getStatus());
+  print_address_register("RX_ADDR_P0-1", RX_ADDR_P0, 2);
+  print_byte_register("RX_ADDR_P2-5", RX_ADDR_P2, 4);
+  print_address_register("TX_ADDR\t", TX_ADDR, 1);
+  print_byte_register("RX_PW_P0-6", RX_PW_P0, 6);
+  print_byte_register("EN_AA\t", EN_AA, 1);
+  print_byte_register("EN_RXADDR", EN_RXADDR, 1);
+  print_byte_register("RF_CH\t", RF_CH, 1);
+  print_byte_register("RF_SETUP", RF_SETUP, 1);
+  print_byte_register("CONFIG\t", CONFIG, 1);
+  print_byte_register("DYNPD/FEATURE", DYNPD, 2);
+  //printf("getDataRate()=%d\n",getDataRate());
+  uint8_t datarate = getDataRate();
+  if (datarate == RF24_DR_1MBPS) {
+    printf("Data Rate\t = 1MBPS \n");
+  } else if (datarate == RF24_DR_2MBPS) {
+    printf("Data Rate\t = 2MBPS \n");
+  } else if (datarate == RF24_DR_250KBPS) {
+    printf("Data Rate\t = 250KBPS \n");
+  }
+#if 0
+  printf_P(PSTR("Model\t\t = "
+  PRIPSTR
+    "\r\n"),pgm_read_ptr(&rf24_model_e_str_P[isPVariant()]));
+#endif
+  //printf("getCRCLength()=%d\n",getCRCLength());
+  uint8_t crclength = getCRCLength();
+  if (crclength ==RF24_CRC_DISABLED) {
+    printf("CRC Length\t = DISABLED\n");
+  } else if (crclength == RF24_CRC_8) {
+    printf("CRC Length\t = 1 byte\n");
+  } else if (crclength == RF24_CRC_16) {
+    printf("CRC Length\t = 2 byte\n");
+  }
+  //printf("getPALevel()=%d\n",getPALevel());
+  uint8_t palevel = getPALevel();
+  if (palevel == 0) {
+    printf("PA Power\t = -18dBm\n");
+  } else if (palevel == 1) {
+    printf("PA Power\t = -12dBm\n");
+  } else if (palevel == 2) {
+    printf("PA Power\t = -6dBm\n");
+  } else if (palevel == 3) {
+    printf("PA Power\t = 0dBm\n");
+  }
+
+}
+
+
+void Nrf24l::print_status(uint8_t status)
+{
+  printf("STATUS\t\t = 0x%02x RX_DR=%x TX_DS=%x MAX_RT=%x RX_P_NO=%x TX_FULL=%x\r\n", status, (status & _BV(RX_DR)) ? 1 : 0,
+        (status & _BV(TX_DS)) ? 1 : 0, (status & _BV(MAX_RT)) ? 1 : 0, ((status >> RX_P_NO) & 0x07), (status & _BV(TX_FULL)) ? 1 : 0);
+}
+
+
+void Nrf24l::print_address_register(const char* name, uint8_t reg, uint8_t qty)
+{
+  printf("%s\t =",name);
+  while (qty--) {
+    //uint8_t buffer[addr_width];
+    uint8_t buffer[5];
+    readRegister(reg++, buffer, sizeof(buffer));
+
+    printf(" 0x");
+    uint8_t* bufptr = buffer + sizeof buffer;
+    while (--bufptr >= buffer) {
+      printf("%02x", *bufptr);
+    }
+  }
+  printf("\r\n");
+}
+
+void Nrf24l::print_byte_register(const char* name, uint8_t reg, uint8_t qty)
+{
+  printf("%s\t =", name);
+  while (qty--) {
+    uint8_t buffer[1];
+    readRegister(reg++, buffer, 1);
+    printf(" 0x%02x", buffer[0]);
+  }
+  printf("\r\n");
+}
+
+
+uint8_t Nrf24l::getDataRate()
+{
+  uint8_t result;
+  uint8_t dr;
+  readRegister(RF_SETUP, &dr, sizeof(dr));
+  //Serial.print("getDataRate(1)=0x");
+  //Serial.println(dr, HEX);
+  dr = dr & (_BV(RF_DR_LOW) | _BV(RF_DR_HIGH));
+  //Serial.print("getDataRate(2)=0x");
+  //Serial.println(dr, HEX);
+
+  // switch uses RAM (evil!)
+  // Order matters in our case below
+  if (dr == _BV(RF_DR_LOW)) {
+    // '10' = 250KBPS
+    result = RF24_DR_250KBPS;
+  } else if (dr == _BV(RF_DR_HIGH)) {
+    // '01' = 2MBPS
+    result = RF24_DR_2MBPS;
+  } else {
+    // '00' = 1MBPS
+    result = RF24_DR_1MBPS;
+  }
+  return result;
+}
+
+uint8_t Nrf24l::getCRCLength()
+{
+  rf24_crclength_e result = RF24_CRC_DISABLED;
+  
+  uint8_t config;
+  readRegister(CONFIG, &config, sizeof(config));
+  //printf("CONFIG=%x\n",config);
+  config = config & (_BV(CRCO) | _BV(EN_CRC));
+  uint8_t AA;
+  readRegister(EN_AA, &AA, sizeof(AA));
+
+  if (config & _BV(EN_CRC) || AA) {
+    if (config & _BV(CRCO)) {
+      result = RF24_CRC_16;
+    } else {
+      result = RF24_CRC_8;
+    }
+  }
+  return result;
+}
+
+
+
+uint8_t Nrf24l::getPALevel()
+{
+  uint8_t level;
+  readRegister(RF_SETUP, &level, sizeof(level));
+  //printf("RF_SETUP=%x\n",level);
+  level = (level & (_BV(RF_PWR_LOW) | _BV(RF_PWR_HIGH))) >> 1;
+  return (level);
+}
+
