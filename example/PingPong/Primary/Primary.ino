@@ -31,6 +31,13 @@ void setup()
   // Print current settings
   printf_begin();
   Mirf.printDetails();
+
+  // Clear RX FiFo
+  while(1) {
+    if (Mirf.dataReady() == false) break;
+    Mirf.getData(mydata.value);
+  }
+  
 }
 
 void loop()
