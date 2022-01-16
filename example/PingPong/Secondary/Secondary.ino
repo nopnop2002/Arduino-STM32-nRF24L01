@@ -40,6 +40,7 @@ void loop()
     Serial.print("Got string: ");
     Serial.println(mydata.now_time);
 
+    delay(10);
     Mirf.send(mydata.value);
     Serial.print("Wait for sending.....");
     //Test you send successfully
