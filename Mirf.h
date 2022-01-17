@@ -155,8 +155,10 @@ class Nrf24l {
     void config();
     void send(uint8_t *value);
     void setRADDR(uint8_t * adr);
+    void addRADDR(uint8_t pipe, uint8_t adr);
     void setTADDR(uint8_t * adr);
     bool dataReady();
+    uint8_t getDataPipe();
     bool isSending();
     bool isSend();
     bool rxFifoEmpty();
@@ -175,6 +177,7 @@ class Nrf24l {
     void setOutputRF_PWR(uint8_t val);
     void setSpeedDataRates( uint8_t val);
     void setRetransmitDelay(uint8_t val);
+    void setChannel(uint8_t val);
     void printDetails();
     void print_status(uint8_t status);
     void print_address_register(const char* name, uint8_t reg, uint8_t qty);

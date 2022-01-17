@@ -111,9 +111,47 @@ void Nrf24l::config()
 void Nrf24l::setRADDR(uint8_t * adr)
 // Sets the receiving address
 {
-  ceLow();
   writeRegister(RX_ADDR_P1, adr, mirf_ADDR_LEN);
-  ceHi();
+}
+
+void Nrf24l::addRADDR(uint8_t pipe, uint8_t adr)
+// Sets the receiving address
+{
+  uint8_t value;
+  readRegister(EN_RXADDR, &value, 1);
+  //Serial.print("EN_RXADDR(1)=0x");
+  //Serial.println(value, HEX);
+  //Serial.print("payload=");
+  //Serial.println(payload);
+
+  //Serial.print("adr=");
+  //Serial.println(adr, HEX);
+  if (pipe == 2) {
+    configRegister(RX_PW_P2, payload);
+    configRegister(RX_ADDR_P2, adr);
+    value = value | 0x04;
+    configRegister(EN_RXADDR, value);
+  } else if (pipe == 3) {
+    configRegister(RX_PW_P3, payload);
+    configRegister(RX_ADDR_P3, adr);
+    value = value | 0x08;
+    configRegister(EN_RXADDR, value);
+  } else if (pipe == 4) {
+    configRegister(RX_PW_P4, payload);
+    configRegister(RX_ADDR_P4, adr);
+    value = value | 0x10;
+    configRegister(EN_RXADDR, value);
+  } else if (pipe == 5) {
+    configRegister(RX_PW_P5, payload);
+    configRegister(RX_ADDR_P5, adr);
+    value = value | 0x20;
+    configRegister(EN_RXADDR, value);
+  }
+
+  readRegister(EN_RXADDR, &value, 1);
+  //Serial.print("EN_RXADDR(2)=0x");
+  //Serial.println(value, HEX);
+
 }
 
 void Nrf24l::setTADDR(uint8_t * adr)
@@ -136,7 +174,15 @@ extern bool Nrf24l::dataReady()
   // We can short circuit on RX_DR, but if it's not set, we still need
   // to check the FIFO for any pending packets
   if ( status & (1 << RX_DR) ) return 1;
-  return !rxFifoEmpty();
+  return 0;
+  //return !rxFifoEmpty();
+}
+
+uint8_t Nrf24l::getDataPipe() {
+  uint8_t status = getStatus();
+  //Serial.print("dataReady=0x");
+  //Serial.println(status, HEX);
+  return ((status & 0x0E) >> 1);
 }
 
 extern bool Nrf24l::rxFifoEmpty() {
@@ -353,7 +399,6 @@ void Nrf24l::powerDown() {
 }
 
 
-
 void Nrf24l::setOutputRF_PWR(uint8_t val) //Set tx power : 0=-18dBm,1=-12dBm,2=-6dBm,3=0dBm,
 {
   if (val > 3) return;
@@ -417,6 +462,13 @@ void Nrf24l::setRetransmitDelay(uint8_t val) //Set Auto Retransmit Delay 0=250us
   //Serial.print("setRetransmitDelay(2)=0x");
   //Serial.println(value, HEX);
   configRegister(SETUP_RETR, value);
+}
+
+void Nrf24l::setChannel(uint8_t val) //Set RF channel
+{
+  ceLow();
+  configRegister(RF_CH, channel);
+  ceHi();
 }
 
 void Nrf24l::printDetails()
