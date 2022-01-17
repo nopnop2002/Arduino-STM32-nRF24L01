@@ -170,7 +170,10 @@ extern bool Nrf24l::dataReady()
   // See note in getData() function - just checking RX_DR isn't good enough
   uint8_t status = getStatus();
 
-  if ( status & (1 << RX_DR) ) return 1;
+  //if ( status & (1 << RX_DR) ) return 1;
+  if ( status & (1 << RX_DR) ) {
+    if ( (status & 0x0E) != 0x0E) return 1;
+  }
   // We can short circuit on RX_DR, but if it's not set, we still need
   // to check the FIFO for any pending packets
   //return !rxFifoEmpty();
