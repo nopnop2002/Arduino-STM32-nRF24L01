@@ -148,10 +148,9 @@ void Nrf24l::addRADDR(uint8_t pipe, uint8_t adr)
     configRegister(EN_RXADDR, value);
   }
 
-  readRegister(EN_RXADDR, &value, 1);
+  //readRegister(EN_RXADDR, &value, 1);
   //Serial.print("EN_RXADDR(2)=0x");
   //Serial.println(value, HEX);
-
 }
 
 // Sets the transmitting address
