@@ -3,7 +3,7 @@
 #include "Mirf.h"
 
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
-int value = 100;
+int16_t value = 100;
 
 void setup()
 {

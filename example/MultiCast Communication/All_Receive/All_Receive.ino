@@ -5,7 +5,7 @@
 
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
-int value;
+int16_t value;
 
 void setup()
 {
