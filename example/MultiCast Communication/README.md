@@ -1,4 +1,4 @@
-# BroadCast communication
+# MultiCast communication
 Multiple send to one receive communication.   
 The nRF24L01 has 6 receive data pipes.   
 In this library, the first datapipe is used for automatic ACK reception on transmission.   
