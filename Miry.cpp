@@ -108,14 +108,14 @@ void Nrf24l::config()
   flushRx();
 }
 
+// Sets the receiving device address
 void Nrf24l::setRADDR(uint8_t * adr)
-// Sets the receiving address
 {
   writeRegister(RX_ADDR_P1, adr, mirf_ADDR_LEN);
 }
 
+// Add the receiving device address
 void Nrf24l::addRADDR(uint8_t pipe, uint8_t adr)
-// Sets the receiving address
 {
   uint8_t value;
   readRegister(EN_RXADDR, &value, 1);
@@ -154,8 +154,8 @@ void Nrf24l::addRADDR(uint8_t pipe, uint8_t adr)
 
 }
 
-void Nrf24l::setTADDR(uint8_t * adr)
 // Sets the transmitting address
+void Nrf24l::setTADDR(uint8_t * adr)
 {
   /*
      RX_ADDR_P0 must be set to the sending addr for auto ack to work.
@@ -165,8 +165,8 @@ void Nrf24l::setTADDR(uint8_t * adr)
   writeRegister(TX_ADDR, adr, mirf_ADDR_LEN);
 }
 
-extern bool Nrf24l::dataReady()
 // Checks if data is available for reading
+extern bool Nrf24l::dataReady()
 {
   // See note in getData() function - just checking RX_DR isn't good enough
   uint8_t status = getStatus();
@@ -178,12 +178,14 @@ extern bool Nrf24l::dataReady()
   return 0;
 }
 
+// Get pipe number for reading
 uint8_t Nrf24l::getDataPipe() {
   uint8_t status = getStatus();
   //Serial.print("dataReady=0x");
   //Serial.println(status, HEX);
   return ((status & 0x0E) >> 1);
 }
+
 
 extern bool Nrf24l::rxFifoEmpty() {
   uint8_t fifoStatus;
