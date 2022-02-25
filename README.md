@@ -286,7 +286,7 @@ This library can communicate with [this](https://github.com/nopnop2002/Raspberry
 This library can communicate with [this](https://github.com/nopnop2002/esp-idf-mirf).
 
 # Using with PlatformIO   
-Specify the URL in lib_deps.   
+Specify the URL in lib_deps of platform.ini.   
 ```
 [env:diymore_f407vgt]
 platform = ststm32
