@@ -56,7 +56,7 @@ nRF24L01 does not have Software Reset function.
 
 - Arduino UNO
 ```
-Nrf24l Mirf = Nrf24l(10, 9);
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
  * VCC  3.3V
  * MISO 12
  * MOSI 11
@@ -78,7 +78,7 @@ __So this module may not work normally when supplied from the on-board 3v3.__
 
 - Arduino MEGA
 ```
-Nrf24l Mirf = Nrf24l(10, 9);
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
  * VCC  3.3V
  * MISO 50
  * MOSI 51
@@ -92,7 +92,7 @@ Serial.print is output to Arduino Serial Monitor.
 
 - Arduino DUE
 ```
-Nrf24l Mirf = Nrf24l(10, 9);
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
  * VCC  3.3V
  * MISO A.25
  * MOSI A.26
@@ -106,7 +106,7 @@ Serial.print is output to Arduino Serial Monitor.
 
 - STM32 NUCLEO
 ```
-Nrf24l Mirf = Nrf24l(10, 9);
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
  * VCC  3.3V
  * MISO D12(=PA6)
  * MOSI D11(=PA7)
@@ -120,7 +120,7 @@ Serial.print is output to Arduino Serial Monitor.
 
 - STM32 F4-Discovery
 ```
-Nrf24l Mirf = Nrf24l(PC6, PC7);
+Nrf24l Mirf = Nrf24l(PC6, PC7); // CE,CSN
  * VCC  3.3V
  * MISO PA6
  * MOSI PA7
@@ -134,7 +134,7 @@ Serial.print is output to PA2.
 
 - Generic STM32F103(BluePill/BlackPill/etc)
 ```
-Nrf24l Mirf = Nrf24l(PB0, PB1);
+Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
  * VCC  3.3V
  * MISO PA6
  * MOSI PA7
@@ -148,7 +148,7 @@ Serial.print is output to PA9.
 
 - Generic STM32F303(BackPill F303CC)
 ```
-Nrf24l Mirf = Nrf24l(PB0, PB1);
+Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
  * VCC  3.3V
  * MISO PA6
  * MOSI PA7
@@ -162,7 +162,7 @@ Serial.print is output to PA9.
 
 - Generic STM32F401(BlackPill F401CC)
 ```
-Nrf24l Mirf = Nrf24l(PB0, PB1);
+Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
  * VCC  3.3V
  * MISO PA6
  * MOSI PA7
@@ -176,7 +176,7 @@ Serial.print is output to PA9.
 
 - Generic STM32F405(Adafruit Feather STM32F405 Express)
 ```
-Nrf24l Mirf = Nrf24l(PB8, PB9);
+Nrf24l Mirf = Nrf24l(PB8, PB9); // CE,CSN
  * VCC  3.3V
  * MISO PB14
  * MOSI PB15
@@ -190,7 +190,7 @@ Serial.print is output to PB10.
 
 - Generic STM32F407(DIYMORE)
 ```
-Nrf24l Mirf = Nrf24l(PB0, PB1);
+Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
  * VCC  3.3V
  * MISO PB4
  * MOSI PB5
@@ -239,7 +239,7 @@ void setup()
 The following works when you remap SPI.
 
 ```
-Nrf24l Mirf = Nrf24l(PB0, PB1);
+Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
  * VCC  3.3V
  * MISO PB14
  * MOSI PB15
@@ -253,7 +253,7 @@ Serial.print is output to PA9.
 
 - ESP8266
 ```
-Nrf24l Mirf = Nrf24l(15, 16);
+Nrf24l Mirf = Nrf24l(15, 16); // CE,CSN
  * VCC  3.3V
  * MISO IO12(D6)
  * MOSI IO13(D7)
@@ -267,7 +267,7 @@ Serial.print is output to IO1.
 
 - ESP8285
 ```
-Nrf24l Mirf = Nrf24l(15, 16);
+Nrf24l Mirf = Nrf24l(15, 16); // CE,CSN
  * VCC  3.3V
  * MISO IO12(D6)
  * MOSI IO13(D7)
