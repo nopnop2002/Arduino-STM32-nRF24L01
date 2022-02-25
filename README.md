@@ -233,7 +233,6 @@ void setup()
   SPI.setMOSI(PB15);
   SPI.setMISO(PB14);
   SPI.setSCLK(PB13);
-  SPI.setSSEL(PB12);
 ```
 
 The following works when you remap SPI.
@@ -286,3 +285,12 @@ This library can communicate with [this](https://github.com/nopnop2002/Raspberry
 - esp-idf(esp32)   
 This library can communicate with [this](https://github.com/nopnop2002/esp-idf-mirf).
 
+# Using with PlatformIO   
+Specify the URL in lib_deps.   
+```
+[env:diymore_f407vgt]
+platform = ststm32
+board = diymore_f407vgt
+framework = arduino
+lib_deps = https://github.com/nopnop2002/Arduino-STM32-nRF24L01
+```
