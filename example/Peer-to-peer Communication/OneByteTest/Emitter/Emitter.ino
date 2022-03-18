@@ -10,23 +10,25 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(value);
-  Mirf.channel = 90;              //Set the channel used
+  Mirf.payload = sizeof(value); // Set the payload size
+  Mirf.channel = 90;            // Set the channel used
   Mirf.config();
 
   //Set the receiver address using 5 characters
   Mirf.setTADDR((byte *)"FGHIJ");
+
+  value = 0;
 }
 
 void loop()
 {
-  value = random(255); //0-255 random number
   Mirf.send(&value);
   Serial.print("Wait for sending.....");
   //Test you send successfully
   if (Mirf.isSend()) {
     Serial.print("Send success:");
     Serial.println(value);
+    value++;
   } else {
     Serial.println("Send fail:");
   }

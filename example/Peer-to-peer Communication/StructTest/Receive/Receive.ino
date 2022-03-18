@@ -4,9 +4,19 @@
 
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
+struct Pack {
+  byte b;   /* 1 */
+  int i;    /* 2 */
+  long l;   /* 4 */
+  float f;  /* 4 */
+  double d; /* 4 */
+};
+
+#define PackSize sizeof(Pack)
+
 union MYDATA_t {
-  byte value[4];
-  unsigned long now_time;
+  byte value[PackSize];
+  struct Pack pack;
 };
 
 MYDATA_t mydata;
@@ -22,7 +32,7 @@ void setup()
 
   //Set your own address using 5 characters
   Mirf.setRADDR((byte *)"FGHIJ");
-  
+
   Serial.println("Listening...");
 }
 
@@ -30,7 +40,7 @@ void loop()
 {
   if (Mirf.dataReady()) { //When the program is received, the received data is output from the serial port
     Mirf.getData(mydata.value);
-    Serial.print("Got now_time: ");
-    Serial.println(mydata.now_time);
+    Serial.print("Got pack: ");
+    Serial.println(mydata.pack.b);
   }
 }

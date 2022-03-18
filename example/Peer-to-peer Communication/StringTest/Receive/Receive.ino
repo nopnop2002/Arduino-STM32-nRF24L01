@@ -16,8 +16,8 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(mydata.value);
-  Mirf.channel = 90;             //Set the used channel
+  Mirf.payload = sizeof(mydata.value); // Set the payload size
+  Mirf.channel = 90;                   // Set the used channel
   Mirf.config();
 
   //Set your own address using 5 characters

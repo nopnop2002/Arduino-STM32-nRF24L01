@@ -4,36 +4,37 @@
 
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
-union MYDATA_t {
-  byte value[4];
-  unsigned long now_time;
-};
-
-
-MYDATA_t mydata;
+byte value[4];
 
 void setup()
 {
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(mydata.value); // Set the payload size
-  Mirf.channel = 90;                   // Set the channel used
+  Mirf.payload = sizeof(value); // Set the payload size
+  Mirf.channel = 90;            // Set the channel used
   Mirf.config();
-
+  
   //Set the receiver address using 5 characters
   Mirf.setTADDR((byte *)"FGHIJ");
+
+  value[0] = 0;
+  value[1] = 1;
+  value[2] = 2;
+  value[3] = 3;
 }
 
 void loop()
 {
-  mydata.now_time = micros();
-  Mirf.send(mydata.value);
+  Mirf.send(value);
   Serial.print("Wait for sending.....");
   //Test you send successfully
   if (Mirf.isSend()) {
-    Serial.print("Send success:");
-    Serial.println(mydata.now_time);
+    Serial.println("Send success:");
+    value[0]++;
+    value[1]++;
+    value[2]++;
+    value[3]++;
   } else {
     Serial.println("Send fail:");
   }
