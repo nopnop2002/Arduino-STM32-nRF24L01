@@ -287,6 +287,7 @@ This library can communicate with [this](https://github.com/nopnop2002/esp-idf-m
 
 # Using with PlatformIO   
 Specify the URL in lib_deps of platform.ini.   
+PlatformIO automatically deploys the library.   
 ```
 [env:diymore_f407vgt]
 platform = ststm32
