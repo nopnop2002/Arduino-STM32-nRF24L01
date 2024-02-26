@@ -49,7 +49,7 @@ nRF24L01 does not have Software Reset function.
 
 
 # Software requirements   
-When using STM32, a core library is required.   
+When using STM32/ESP8266, you need to install the core library.   
 There is some core library for STM32.   
 I used [this](https://github.com/stm32duino/Arduino_Core_STM32).   
 
