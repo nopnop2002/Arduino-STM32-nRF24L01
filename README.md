@@ -27,8 +27,6 @@ SPI.endTransaction()
 
 This repository works with Transaction SPI Mode.
 
----
-
 # Memory usage
 
 - Transmitter
@@ -43,14 +41,18 @@ Sketch uses 2796 bytes (8%) of program storage space. Maximum is 32256 bytes.
 Global variables use 248 bytes (12%) of dynamic memory, leaving 1800 bytes for local variables. Maximum is 2048 bytes.
 ```
 
----
 
 # Important
 When changing the settings of the nRF24L01, it is necessary to power cycle the nRF24L01 before executing.   
 Because nRF24L01 remembers the previous setting.   
 nRF24L01 does not have Software Reset function.   
 
----
+
+# Software requirements   
+When using STM32, a core library is required.   
+There is some core library for STM32.   
+I used [this](https://github.com/stm32duino/Arduino_Core_STM32).   
+
 
 # Tested board
 
