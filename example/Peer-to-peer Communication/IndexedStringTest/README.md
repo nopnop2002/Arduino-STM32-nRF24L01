@@ -1,6 +1,6 @@
 # Peer-to-peer Communication
 
-The nRF24L01 can send and receive up to 32 characters, but by adding an index to the sent data, it can send and receive 256 types of data.   
+nRF24L01 can send and receive up to 32 characters, but by adding an index to the sent data, it can send and receive 256 types of data.   
 
 ```
 Listening...
