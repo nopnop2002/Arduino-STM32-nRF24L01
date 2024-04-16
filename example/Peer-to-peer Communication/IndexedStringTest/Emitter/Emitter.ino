@@ -37,20 +37,20 @@ void setup()
 void loop()
 {
   static int index = 0x41; // 'A'
+  mydata.pack.index = index;
+  for (int i=0;i<30;i++) {
+    mydata.pack.payload[i] = index;
+  }
+  mydata.pack.payload[30] = 0;
+  index++;
+  if(index == 0x7e) {
+    index = 0x41;
+  }
   Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
   //Test you send successfully
   if (Mirf.isSend()) {
-    Serial.print("Send success:");
-    mydata.pack.index = index;
-    for (int i=0;i<30;i++) {
-      mydata.pack.payload[i] = index;
-    }
-    mydata.pack.payload[30] = 0;
-    index++;
-    if(index == 0x7e) {
-      index = 0x41;
-    }
+    Serial.println("Send success:");
   } else {
     Serial.println("Send fail:");
   }
