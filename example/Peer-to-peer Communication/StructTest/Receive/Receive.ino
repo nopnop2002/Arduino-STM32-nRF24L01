@@ -40,7 +40,15 @@ void loop()
 {
   if (Mirf.dataReady()) { //When the program is received, the received data is output from the serial port
     Mirf.getData(mydata.value);
-    Serial.print("Got pack: ");
-    Serial.println(mydata.pack.b);
+    Serial.print("Got pack: b=");
+    Serial.print(mydata.pack.b);
+    Serial.print(" i=");
+    Serial.print(mydata.pack.i);
+    Serial.print(" l=");
+    Serial.print(mydata.pack.l);
+    Serial.print(" f=");
+    Serial.print(mydata.pack.f);
+    Serial.print(" d=");
+    Serial.println(mydata.pack.d);
   }
 }

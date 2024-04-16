@@ -34,6 +34,10 @@ void setup()
   Mirf.setTADDR((byte *)"FGHIJ");
 
   mydata.pack.b = 0;
+  mydata.pack.i = 0;
+  mydata.pack.l = 0;
+  mydata.pack.f = 0.0;
+  mydata.pack.d = 0.0;
 }
 
 void loop()
@@ -45,6 +49,10 @@ void loop()
     Serial.print("Send success:");
     Serial.println(mydata.pack.b);
     mydata.pack.b++;
+    mydata.pack.i--;
+    mydata.pack.l++;
+    mydata.pack.f+=1.0;
+    mydata.pack.d-=1.0;
   } else {
     Serial.println("Send fail:");
   }
