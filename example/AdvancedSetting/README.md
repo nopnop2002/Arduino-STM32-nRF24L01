@@ -1,6 +1,41 @@
 # AdvancedSetting
-When used at long distances, lowering the RF data rate stabilizes it.   
-When changing the RF data rate, the sender and receiver must have the same value.   
-When using 250KBps, it is necessary to increase the Retransmit Delay.   
+nRF24L01 has "Enhanced ShockBurst" features.   
+"Enhanced ShockBurst" automatically sets the PTX(=Transmitter) in receive mode to wait for the ACK packet from PRX(=Receiver).   
+
+## Transmission Successful   
+|ESP32||nRF24L01[PTX]||nRF24L01[PRX]||ESP32|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|ESP32|-->|nRF24L01|||||
+|||nRF24L01|--(Payload)-->|nRF24L01|||||
+|||nRF24L01|<--(Ack Packet)--|nRF24L01|||||
+|ESP32|<--|nRF24L01|||||||
+|||||nRF24L01|-->|ESP32|
+
+## Transmission Failure   
+PTX waits for an ACK packet for 250uS and retransmits 3 times.   
+|ESP32||nRF24L01[PTX]||nRF24L01[PRX]||ESP32|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|ESP32|-->|nRF24L01|||||
+|||nRF24L01|--(Payload)-->|nRF24L01|||||
+||||250uS||||||
+|||nRF24L01|--(Payload)-->|nRF24L01|||||
+||||250uS||||||
+|||nRF24L01|--(Payload)-->|nRF24L01|||||
+||||250uS||||||
+|ESP32|<--|nRF24L01|||||||
 
 
+Using a data rate of 250KBps extends the range of radio waves.   
+However, it takes time to send PAYLOAD and receive ACK PACKET.   
+Therefore, the delay time for automatic retransmission should be longer than 250uS.   
+If the delay of automatic retransmission is not increased, it is considered as a transmission failure.   
+|ESP32||nRF24L01[PTX]||nRF24L01[PRX]||ESP32|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|ESP32|-->|nRF24L01|||||
+|||nRF24L01|--(Payload)-->|nRF24L01|||||
+||||Over 250uS||||||
+|||nRF24L01|<--(Ack Packet)--|nRF24L01|||||
+|ESP32|<--|nRF24L01|||||||
+|||||nRF24L01|-->|ESP32|
+
+See the data sheet for details on Enhanced ShockBurst.   
