@@ -7,6 +7,7 @@ nRF24L01 has "Enhanced ShockBurst" features.
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |ESP32|-->|nRF24L01|||||
 |||nRF24L01|--(Payload)-->|nRF24L01|||||
+||||wait 250uS||||||
 |||nRF24L01|<--(Ack Packet)--|nRF24L01|||||
 |ESP32|<--|nRF24L01|||||||
 |||||nRF24L01|-->|ESP32|
