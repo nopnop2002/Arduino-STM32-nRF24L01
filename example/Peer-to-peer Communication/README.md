@@ -22,7 +22,7 @@ The following parameters must match on the sender and receiver.
 
 ```
 
-# nRF24L01 Adress Register Setting
+# nRF24L01 Address Register Setting
 |Emitter||||Receiver||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |TX_ADDR<br>"FGHIJ"|RX_ADDR_P0<br>"FGHIJ"|RX_ADDR_P1<br>NONE||TX_ADDR<br>NONE|RX_ADDR_P0<br>NONE|RX_ADDR_P1<br>"FGHIJ"||
