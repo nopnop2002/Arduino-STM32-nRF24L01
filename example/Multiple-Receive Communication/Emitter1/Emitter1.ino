@@ -3,31 +3,37 @@
 #include "Mirf.h"
 
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
-int16_t value = 100;
+
+union MYDATA_t {
+  byte value[32];
+  char now_time[32];
+};
+
+MYDATA_t mydata;
 
 void setup()
 {
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(value);
-  Mirf.channel = 90; //Set the channel used
+  Mirf.payload = sizeof(mydata.value); // Set the payload size
+  Mirf.channel = 90;                   // Set the channel used
   Mirf.config();
 
-  //Set the receiver address using 5 characters
+  // Set destination address to TX_ADDR
+  // Set ACK waiting address to RX_ADDR_P0
   Mirf.setTADDR((byte *)"1RECV");
 }
 
 void loop()
 {
-  Mirf.send((byte *)&value);
+  sprintf(mydata.now_time,"now is %lu", micros());
+  Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
-  //Test you send successfully
+  // Verify send was successful
   if (Mirf.isSend()) {
     Serial.print("Send success:");
-    Serial.println(value);
-    value++;
-    if (value == 200) value=100;
+    Serial.println(mydata.now_time);
   } else {
     Serial.println("Send fail:");
   }

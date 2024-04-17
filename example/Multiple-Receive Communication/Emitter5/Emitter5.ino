@@ -2,7 +2,10 @@
 
 #include "Mirf.h"
 
-Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
+//Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
+
+//RF-NANO(Clone)
+Nrf24l Mirf = Nrf24l(7, 8); // CE,CSN
 
 union MYDATA_t {
   byte value[32];
@@ -20,7 +23,8 @@ void setup()
   Mirf.channel = 90;                   // Set the channel used
   Mirf.config();
 
-  //Set the receiver address using 5 characters
+  // Set destination address to TX_ADDR
+  // Set ACK waiting address to RX_ADDR_P0
   Mirf.setTADDR((byte *)"5RECV");
 }
 
@@ -29,7 +33,7 @@ void loop()
   sprintf(mydata.now_time,"now is %lu",micros());
   Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
-  //Test you send successfully
+  // Verify send was successful
   if (Mirf.isSend()) {
     Serial.print("Send success:");
     Serial.println(mydata.now_time);
