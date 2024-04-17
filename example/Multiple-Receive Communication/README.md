@@ -5,7 +5,7 @@ The second(RX_ADDR_P1) to sixth(RX_ADDR_P5) data pipes are used for data recepti
 Therefore, it is possible to receive from a maximum of five transmitting sides.   
 This example receive from 1RECV/2RECV/3RECV/4RECV/5RECV.   
 
-# nRF24L01 Adress Register Setting
+# nRF24L01 Address Register Setting
 |Emitter|||||Receiver||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |#1|TX_ADDR<br>"1RECV"|RX_ADDR_P0<br>"1RECV"|RX_ADDR_P1<br>NONE||TX_ADDR<br>NONE|RX_ADDR_P0<br>NONE|RX_ADDR_P1<br>"1RECV"|RX_ADDR_P2<br>"2RECV"|RX_ADDR_P5<br>"5RECV"||
