@@ -17,16 +17,16 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(mydata.value);
-  Mirf.channel = 90;             //Set the used channel
+  Mirf.payload = sizeof(mydata.value); // Set the payload size
+  Mirf.channel = 90;                   // Set the used channel
   Mirf.config();
 
-  //Set your own address using 5 characters
+  // Set my own address to RX_ADDR_P1
   Mirf.setRADDR((byte *)"FGHIJ");
 
   // Set RF Data Ratio
   // It must be the same value as the other party's value.
-  Mirf.setSpeedDataRates(0);
+  Mirf.setSpeedDataRates(1); // 2MBps
 
   // Print current settings
   printf_begin();
@@ -36,7 +36,8 @@ void setup()
 
 void loop()
 {
-  if (Mirf.dataReady()) { //When the program is received, the received data is output from the serial port
+  // Wait for received data
+  if (Mirf.dataReady()) {
     Mirf.getData(mydata.value);
     Serial.print("Got string: ");
     Serial.println(mydata.now_time);
