@@ -1,7 +1,7 @@
 # Multiple received communication   
-The nRF24L01 has 6 receive data pipes.   
-In this library, the first datapipe is used for automatic ACK reception on transmission.   
-The second to sixth data pipes are used for data reception.   
+The nRF24L01 has 6 receive data pipes (RX_ADDR_P0-P6).   
+In this library, the first data pipe(RX_ADDR_P0) is used for automatic ACK reception on transmission.   
+The second(RX_ADDR_P1) to sixth(RX_ADDR_P5) data pipes are used for data reception.   
 Therefore, it is possible to receive from a maximum of five transmitting sides.   
 This example receive from 1RECV/2RECV/3RECV/4RECV/5RECV.   
 
@@ -15,8 +15,8 @@ This example receive from 1RECV/2RECV/3RECV/4RECV/5RECV.
 ||(Send Data)|->|->|->|->|->|->|(Get Data)||Data to Receiver|
 |||(Get Ack)|<-|<-|<-|<-|<-|(Send Ack)||Ack to Emitter|
 |#5|TX_ADDR<br>"1RECV"|RX_ADDR_P0<br>"1RECV"|RX_ADDR_P1<br>NONE||TX_ADDR<br>NONE|RX_ADDR_P0<br>NONE|RX_ADDR_P1<br>"1RECV"|RX_ADDR_P2<br>"2RECV"|RX_ADDR_P5<br>"5RECV"||
-||(Send Data)|->|->|->|->|->|->||(Get Data)|Data to Receiver|
-|||(Get Ack)|<-|<-|<-|<-|<-||(Send Ack)|Ack to Emitter|
+||(Send Data)|->|->|->|->|->|->|->|(Get Data)|Data to Receiver|
+|||(Get Ack)|<-|<-|<-|<-|<-|<-|(Send Ack)|Ack to Emitter|
 
 
 # Receiver Register
