@@ -5,6 +5,19 @@ The second to sixth data pipes are used for data reception.
 Therefore, it is possible to receive from a maximum of five transmitting sides.   
 This example receive from 1RECV/2RECV/3RECV/4RECV/5RECV.   
 
-![MultiCast](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/8cdb34a7-8508-4b67-b4da-16eb52cd8e71)
+# nRF24L01 Adress Register Setting
+|Emitter|||||Receiver||||||
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|#1|TX_ADDR<br>"1RECV"|RX_ADDR_P0<br>"1RECV"|RX_ADDR_P1<br>NONE||TX_ADDR<br>NONE|RX_ADDR_P0<br>NONE|RX_ADDR_P1<br>"1RECV"|RX_ADDR_P2<br>"2RECV"|RX_ADDR_P5<br>"5RECV"||
+||(Send Data)|->|->|->|->|->|(Get Data)|||Data to Receiver|
+|||(Get Ack)|<-|<-|<-|<-|(Send Ack)|||Ack to Emitter|
+|#2|TX_ADDR<br>"1RECV"|RX_ADDR_P0<br>"1RECV"|RX_ADDR_P1<br>NONE||TX_ADDR<br>NONE|RX_ADDR_P0<br>NONE|RX_ADDR_P1<br>"1RECV"|RX_ADDR_P2<br>"2RECV"|RX_ADDR_P5<br>"5RECV"||
+||(Send Data)|->|->|->|->|->|->|(Get Data)||Data to Receiver|
+|||(Get Ack)|<-|<-|<-|<-|<-|(Send Ack)||Ack to Emitter|
+|#5|TX_ADDR<br>"1RECV"|RX_ADDR_P0<br>"1RECV"|RX_ADDR_P1<br>NONE||TX_ADDR<br>NONE|RX_ADDR_P0<br>NONE|RX_ADDR_P1<br>"1RECV"|RX_ADDR_P2<br>"2RECV"|RX_ADDR_P5<br>"5RECV"||
+||(Send Data)|->|->|->|->|->|->||(Get Data)|Data to Receiver|
+|||(Get Ack)|<-|<-|<-|<-|<-||(Send Ack)|Ack to Emitter|
 
-![MultiReceiver](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/bc2534f3-3951-4846-bdf6-10164017e081)
+
+# Receiver Register
+![Register-Receiver](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/5bf35e2c-22a7-4c5b-8de7-b945cbfeb28b)
