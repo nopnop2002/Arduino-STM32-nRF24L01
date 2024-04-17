@@ -30,11 +30,12 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(mydata.value);
-  Mirf.channel = 90; //Set the channel used
+  Mirf.payload = sizeof(mydata.value); // Set the payload size
+  Mirf.channel = 90;                   // Set the channel used
   Mirf.config();
 
-  //Set the receiver address using 5 characters
+  // Set destination address to TX_ADDR
+  // Set ACK waiting address to RX_ADDR_P0
   Mirf.setTADDR((byte *)"FGHIJ");
   mydata.counter = 0;
 }
@@ -44,7 +45,7 @@ void loop()
   mydata.counter++;
   Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
-  //Test you send successfully
+  // Verify send was successfuly
   if (Mirf.isSend()) {
     Serial.print("Send success:");
     Serial.println(mydata.counter);
@@ -53,8 +54,9 @@ void loop()
     Serial.println("Send fail:");
     Serial.flush();
   }
-  //delay(10000);
-  for(int i=0;i<10;i++) {
+
+  // Approximately 2 minutes interval
+  for(int i=0;i<60;i++) {
     LowPower.deepSleep(1000); // DeepSleep 1000 MilllSec
   }
 }
