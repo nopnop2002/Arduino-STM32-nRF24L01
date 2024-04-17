@@ -10,8 +10,8 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(value);
-  Mirf.channel = 90; //Set the channel used
+  Mirf.payload = sizeof(value); // Set the payload size
+  Mirf.channel = 90;            // Set the channel used
   Mirf.config();
   value = 100;
 }
@@ -24,10 +24,12 @@ void loop()
   address[4] = address[4] + sequence;
   Serial.print("RECV");
   Serial.print(address[4]-'0');
+
+  // Set destination address to TX_ADDR
+  // Set ACK waiting address to RX_ADDR_P0  
   Mirf.setTADDR(address);
   Mirf.send((byte *)&value);
-  //Serial.print("Wait for sending.....");
-  //Test you send successfully
+  // Verify send was successfuly
   if (Mirf.isSend()) {
     //Serial.print("address:");
     //Serial.print(address[4]-'0');

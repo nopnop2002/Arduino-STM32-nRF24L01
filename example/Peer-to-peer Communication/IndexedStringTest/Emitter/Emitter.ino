@@ -42,7 +42,7 @@ void loop()
   mydata.pack.payload[30] = 0;
   Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
-  //Test you send successfully
+  // Verify send was successfuly
   if (Mirf.isSend()) {
     Serial.print("Send success:");
     Serial.println(mydata.pack.index);

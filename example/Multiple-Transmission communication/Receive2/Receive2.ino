@@ -10,21 +10,27 @@ void setup()
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(value);
-  Mirf.channel = 90; //Set the used channel
+  Mirf.payload = sizeof(value); // Set the payload size
+  Mirf.channel = 90;            // Set the used channel
   Mirf.config();
 
-  //Set your own address (receiver address) using 5 characters
-  Mirf.setRADDR((byte *)"RECV1");  
-  Serial.println("Listening...");
+  // Set my own address to RX_ADDR_P1
+  Mirf.setRADDR((byte *)"RECV1");
+  
+  // Clear RX FiFo
+  while(1) {
+    if (Mirf.dataReady() == false) break;
+    Mirf.getData((byte *) &value);
+  }
+  Serial.println("Listening...");  
 }
 
 void loop()
 {
-  //When the program is received, the received data is output from the serial port
+  // Wait for received datat
   if (Mirf.dataReady()) {
     Mirf.getData((byte *) &value);
-    Serial.print("Receive1 got data is: ");
+    Serial.print("RECV1 got int16 data: ");
     Serial.println(value);
   }
 }
