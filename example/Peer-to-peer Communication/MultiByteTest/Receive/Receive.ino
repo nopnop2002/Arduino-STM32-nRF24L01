@@ -15,15 +15,21 @@ void setup()
   Mirf.channel = 90;            // Set the used channel
   Mirf.config();
 
-  //Set your own address using 5 characters
+  // Set my own address to RX_ADDR_P1
   Mirf.setRADDR((byte *)"FGHIJ");
 
+  // Clear RX FiFo
+  while(1) {
+    if (Mirf.dataReady() == false) break;
+    Mirf.getData(value);
+  }
   Serial.println("Listening...");
 }
 
 void loop()
 {
-  while (Mirf.dataReady()) { //When the program is received, the received data is output from the serial port
+  // Wait for received data
+  while (Mirf.dataReady()) {
     Mirf.getData(value);
     Serial.print("Got 4 byte data: ");
     Serial.print(value[0]);

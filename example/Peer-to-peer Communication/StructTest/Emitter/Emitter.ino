@@ -30,7 +30,8 @@ void setup()
   Mirf.channel = 90;                   // Set the channel used
   Mirf.config();
 
-  //Set the receiver address using 5 characters
+  // Set destination address to TX_ADDR
+  // Set ACK waiting address to RX_ADDR_P0
   Mirf.setTADDR((byte *)"FGHIJ");
 
   mydata.pack.b = 0;
@@ -44,10 +45,18 @@ void loop()
 {
   Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
-  //Test you send successfully
+  // Verify send was successfuly
   if (Mirf.isSend()) {
-    Serial.print("Send success:");
-    Serial.println(mydata.pack.b);
+    Serial.print("Send success: b=");
+    Serial.print(mydata.pack.b);
+    Serial.print(" i=");
+    Serial.print(mydata.pack.i);
+    Serial.print(" l=");
+    Serial.print(mydata.pack.l);
+    Serial.print(" f=");
+    Serial.print(mydata.pack.f);
+    Serial.print(" d=");
+    Serial.println(mydata.pack.d);
     mydata.pack.b++;
     mydata.pack.i--;
     mydata.pack.l++;
