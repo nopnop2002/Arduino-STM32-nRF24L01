@@ -5,7 +5,7 @@ Primary -----> Secondary
 Primary <----- Secondary
 ```
 
-# nRF24L01 Adress Register Setting
+# nRF24L01 Address Register Setting
 |Primary||||Secondary||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |TX_ADDR<br>"FGHIJ"|RX_ADDR_P0<br>"FGHIJ"|RX_ADDR_P1<br>"ABCDE"||TX_ADDR<br>"ABCDE"|RX_ADDR_P0<br>"ABCDE"|RX_ADDR_P1<br>"FGHIJ"||
