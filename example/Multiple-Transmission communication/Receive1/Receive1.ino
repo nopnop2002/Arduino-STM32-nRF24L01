@@ -30,7 +30,7 @@ void loop()
   // Wait for received data
   if (Mirf.dataReady()) {
     Mirf.getData((byte *) &value);
-    Serial.print("Receive1 got int16 data: ");
+    Serial.print("RECV0 got int16 data: ");
     Serial.println(value);
   }
 }
