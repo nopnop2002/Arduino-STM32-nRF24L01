@@ -29,8 +29,11 @@ The following parameters must match on the sender and receiver.
 |(Send Data)|->|->|->|->|->|(Get Data)|Data to Receiver|
 ||(Get Ack)|<-|<-|<-|<-|(Send Ack)|Ack to Emitter|
 
-# Sender Register
-![Register-Sender](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/2a1a61aa-8af7-486c-b8f3-db1667d3de81)
+# Setting Register
+The underlined parts match on the sending and receiving sides.   
 
-# Receiver Register
-![Register-Receiver](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/1135e312-4e72-4990-b059-6bc7849928ee)
+### Sender Register
+![Register-Sender](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/af162be0-620e-410c-ad0f-32304ebc37fd)
+
+### Receiver Register
+![Register-Receiver](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/a46bfadf-5383-40ef-b7c5-fd9da1e65e57)
