@@ -39,3 +39,7 @@ If the delay of automatic retransmission is not increased, it is considered as a
 |||||nRF24L01|-->|ESP32|
 
 See the data sheet for details on Enhanced ShockBurst.   
+
+# About antena
+Standard PCB antenna is designed for 2GB frequency.   
+If you change the frequency, you will need to change to an IPEX antenna that matches the frequency.   

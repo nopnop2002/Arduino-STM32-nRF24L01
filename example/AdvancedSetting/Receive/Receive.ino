@@ -13,19 +13,19 @@ union MYDATA_t {
 
 MYDATA_t mydata;
 //uint8_t dataRate = 0; // 1MBps
-//uint8_t dataRate = 1; // 2MBps
-uint8_t dataRate = 2; // 250KBps
+uint8_t dataRate = 1; // 2MBps
+//uint8_t dataRate = 2; // 250KBps
 
 void setup()
 {
   Serial.begin(115200);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  Mirf.payload = sizeof(mydata.value);
-  Mirf.channel = 90;             //Set the used channel
+  Mirf.payload = sizeof(mydata.value); // Set the payload size
+  Mirf.channel = 90;                   // Set the used channel
   Mirf.config();
 
-  //Set your own address (receiver address) using 5 characters
+  // Set my own address to RX_ADDR_P1
   Mirf.setRADDR((byte *)"FGHIJ"); 
 
   // Set RF Data Ratio
@@ -35,12 +35,19 @@ void setup()
   // Print current settings
   printf_begin();
   Mirf.printDetails();
-  Serial.println("Listening...");  //Start listening to received data
+
+  // Clear RX FiFo
+  while(1) {
+    if (Mirf.dataReady() == false) break;
+    Mirf.getData(mydata.value);
+  }
+  Serial.println("Listening...");
 }
 
 void loop()
 {
-  if (Mirf.dataReady()) { //When the program is received, the received data is output from the serial port
+  // Wait for received data
+  if (Mirf.dataReady()) {
     Mirf.getData(mydata.value);
     Serial.print("Got string: ");
     Serial.println(mydata.now_time);
