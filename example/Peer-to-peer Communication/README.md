@@ -30,7 +30,7 @@ The following parameters must match on the sender and receiver.
 ||(Get Ack)|<-|<-|<-|<-|(Send Ack)|Ack to Emitter|
 
 # Sender Register
-![Register-Sender](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/472a41e0-ebad-4074-8b4b-5832116ddf96)
+![Register-Sender](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/2a1a61aa-8af7-486c-b8f3-db1667d3de81)
 
 # Receiver Register
 ![Register-Receiver](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/1135e312-4e72-4990-b059-6bc7849928ee)
