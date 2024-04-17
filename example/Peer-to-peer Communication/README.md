@@ -31,6 +31,7 @@ The following parameters must match on the sender and receiver.
 
 # Setting Register
 The underlined address match on the sending and receiving sides.   
+No other addresses are used.   
 
 ### Sender Register
 ![Register-Sender](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/af162be0-620e-410c-ad0f-32304ebc37fd)
