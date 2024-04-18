@@ -1,4 +1,4 @@
-# PingPong
+# Ping-Pong Communication
 
 ```
 Primary -----> Secondary
