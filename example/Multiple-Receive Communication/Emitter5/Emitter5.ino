@@ -2,10 +2,7 @@
 
 #include "Mirf.h"
 
-//Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
-
-//RF-NANO(Clone)
-Nrf24l Mirf = Nrf24l(7, 8); // CE,CSN
+Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
 union MYDATA_t {
   byte value[32];
