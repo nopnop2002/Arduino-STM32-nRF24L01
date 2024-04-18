@@ -15,10 +15,12 @@ Primary <----- Secondary
 |||(Get Data)|<-|(Send Data)|||Data to Primary|
 |||(Send Ack)|->|->|(Get Ack)||Ack to Secondary|
 
-# Primary Register
-![Register-Primary](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/9f0519e4-22e9-4552-b666-bd172f994fca)
+# Setting Register
+The underlined address match on the sending and receiving sides.   
 
+## Primary Register
+![Register-Primary](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/71a00113-9de5-4fd2-8742-deebc6278a76)
 
 # Secondary Register
-![Register-Secondary](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/a70279d8-cd6b-4260-bcd2-15218ae0a4e8)
+![Register-Secondary](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/c2506c30-58a8-4aa0-9d07-c4225a2dae51)
 
