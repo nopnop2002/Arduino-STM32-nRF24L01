@@ -43,4 +43,4 @@ See the data sheet for details on Enhanced ShockBurst.
 
 # About antena
 Standard PCB antenna is designed for 2MBps frequency.   
-If you change the frequency, you will need to change to an IPEX antenna that matches the frequency.   
+If you want to change the frequency, you need to use an IPEX antenna type module and use an IPEX antenna that matches the frequency.   
