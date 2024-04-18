@@ -42,5 +42,5 @@ If the delay of automatic retransmission is not increased, it is considered as a
 See the data sheet for details on Enhanced ShockBurst.   
 
 # About antena
-Standard PCB antenna is designed for 2GB frequency.   
+Standard PCB antenna is designed for 2MBps frequency.   
 If you change the frequency, you will need to change to an IPEX antenna that matches the frequency.   
