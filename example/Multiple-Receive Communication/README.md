@@ -20,6 +20,8 @@ This example receive from 1RECV/2RECV/3RECV/4RECV/5RECV.
 
 
 # Receiver Register
+RX_ADDR_P1 is 0x5643455231.   
+RX_ADDR_P2 will be 0x5643455232. The same value is used for the first 4 bytes.   
 ![Register-Receiver](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/5bf35e2c-22a7-4c5b-8de7-b945cbfeb28b)
 
 # Receiver ScreenShot
