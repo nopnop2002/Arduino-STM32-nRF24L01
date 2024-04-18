@@ -3,7 +3,7 @@ The nRF24L01 has 6 receive data pipes (RX_ADDR_P0-P6).
 In this library, the first data pipe(RX_ADDR_P0) is used for automatic ACK reception on transmission.   
 The second(RX_ADDR_P1) to sixth(RX_ADDR_P5) data pipes are used for data reception.   
 Therefore, it is possible to receive from a maximum of five transmitting sides.   
-This example receive from 1RECV/2RECV/3RECV/4RECV/5RECV.   
+This example receive from ```1RECV/2RECV/3RECV/4RECV/5RECV```.   
 
 # nRF24L01 Address Register Setting
 |Emitter|||||Receiver||||||
