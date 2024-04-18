@@ -491,11 +491,11 @@ void Nrf24l::printDetails()
   //printf("getDataRate()=%d\n",getDataRate());
   uint8_t datarate = getDataRate();
   if (datarate == RF24_DR_1MBPS) {
-    printf("Data Rate\t = 1MBPS \n");
+    printf("Data Rate\t = 1MBPS\r\n");
   } else if (datarate == RF24_DR_2MBPS) {
-    printf("Data Rate\t = 2MBPS \n");
+    printf("Data Rate\t = 2MBPS\r\n");
   } else if (datarate == RF24_DR_250KBPS) {
-    printf("Data Rate\t = 250KBPS \n");
+    printf("Data Rate\t = 250KBPS\r\n");
   }
 #if 0
   printf_P(PSTR("Model\t\t = "
@@ -505,27 +505,27 @@ void Nrf24l::printDetails()
   //printf("getCRCLength()=%d\n",getCRCLength());
   uint8_t crclength = getCRCLength();
   if (crclength ==RF24_CRC_DISABLED) {
-    printf("CRC Length\t = DISABLED\n");
+    printf("CRC Length\t = DISABLED\r\n");
   } else if (crclength == RF24_CRC_8) {
-    printf("CRC Length\t = 8 bits\n");
+    printf("CRC Length\t = 8 bits\r\n");
   } else if (crclength == RF24_CRC_16) {
-    printf("CRC Length\t = 16 bits\n");
+    printf("CRC Length\t = 16 bits\r\n");
   }
   //printf("getPALevel()=%d\n",getPALevel());
   uint8_t palevel = getPALevel();
   if (palevel == 0) {
-    printf("PA Power\t = -18dBm\n");
+    printf("PA Power\t = -18dBm\r\n");
   } else if (palevel == 1) {
-    printf("PA Power\t = -12dBm\n");
+    printf("PA Power\t = -12dBm\r\n");
   } else if (palevel == 2) {
-    printf("PA Power\t = -6dBm\n");
+    printf("PA Power\t = -6dBm\r\n");
   } else if (palevel == 3) {
-    printf("PA Power\t = 0dBm\n");
+    printf("PA Power\t = 0dBm\r\n");
   }
   //printf("getRetransmitDelay()=%d\n",getRetransmitDelay());
   uint8_t retransmit = getRetransmitDelay();
   int16_t delay = (retransmit+1)*250;
-  printf("Retransmit\t = %d us\n", delay);
+  printf("Retransmit\t = %d us\r\n", delay);
 
 }
 
