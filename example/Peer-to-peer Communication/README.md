@@ -23,11 +23,11 @@ The following parameters must match on the sender and receiver.
 ```
 
 # nRF24L01 Address Register Setting
-|Emitter||||Receiver||||
+|Sender||||Receiver||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |TX_ADDR<br>"FGHIJ"|RX_ADDR_P0<br>"FGHIJ"|RX_ADDR_P1<br>NONE||TX_ADDR<br>NONE|RX_ADDR_P0<br>NONE|RX_ADDR_P1<br>"FGHIJ"||
 |(Send Data)|->|->|->|->|->|(Get Data)|Data to Receiver|
-||(Get Ack)|<-|<-|<-|<-|(Send Ack)|Ack to Emitter|
+||(Get Ack)|<-|<-|<-|<-|(Send Ack)|Ack to Sender|
 
 # Setting Register
 The underlined address match on the sending and receiving sides.   
