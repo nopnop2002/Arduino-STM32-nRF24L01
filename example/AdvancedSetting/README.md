@@ -44,3 +44,8 @@ See the data sheet for details on Enhanced ShockBurst.
 # About antena
 Standard PCB antenna is designed for 2MBps frequency.   
 If you want to change the frequency, you need to use an IPEX antenna type module and use an IPEX antenna that matches the frequency.   
+
+![nRF24L01+RFX2401C-1](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/6538706b-5433-4fe3-a68d-a1b9f232cbbb)
+
+Remove the jumper here and replace it with the lower land to enable the IPX connector.
+![nRF24L01+RFX2401C-2](https://github.com/nopnop2002/Arduino-STM32-nRF24L01/assets/6020549/bdb1d40e-f2f2-48eb-af05-528592c902b9)
