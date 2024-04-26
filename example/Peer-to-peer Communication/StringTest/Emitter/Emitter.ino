@@ -10,7 +10,6 @@ Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 
 // for STM32
 //Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
-
  
 union MYDATA_t {
   byte value[32];

@@ -1,9 +1,15 @@
 //primary program
 
 #include "Mirf.h"
-#include "printf.h"
 
+// for ATMega328
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
+
+// for RF-Nano
+//Nrf24l Mirf = Nrf24l(9, 10); // CE,CSN
+
+// for STM32
+//Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
 
 union MYDATA_t {
   byte value[32];
@@ -28,16 +34,11 @@ void setup()
   // Set ACK waiting address to RX_ADDR_P0
   Mirf.setTADDR((byte *)"FGHIJ");
 
-  // Print current settings
-  printf_begin();
-  Mirf.printDetails();
-
   // Clear RX FiFo
   while(1) {
     if (Mirf.dataReady() == false) break;
     Mirf.getData(mydata.value);
   }
-  
 }
 
 void loop()
@@ -53,17 +54,25 @@ void loop()
 
     // Wait for received data
     Serial.print("Wait for response.....");
-    while(1) {
-      if (Mirf.dataReady()) break;
+    bool received = false;
+    for(int i=0;i<100;i++) {
+      if (Mirf.dataReady()) {
+        received = true;
+        break;
+      }
+      delay(10);
     }
-    Mirf.getData(mydata.value);
-    unsigned long diffMillis = millis() - startMillis;
-    Serial.print("Got response:");
-    Serial.print(mydata.now_time);
-    Serial.print(" Elapsed:");
-    Serial.print(diffMillis);
-    Serial.println(" mSec");
-
+    if (received) {
+      Mirf.getData(mydata.value);
+      unsigned long diffMillis = millis() - startMillis;
+      Serial.print("Got response:");
+      Serial.print(mydata.now_time);
+      Serial.print(" Elapsed:");
+      Serial.print(diffMillis);
+      Serial.println(" mSec");
+    } else {
+      Serial.println("No response");
+    }
   } else {
     Serial.println("Send fail:");
   }
