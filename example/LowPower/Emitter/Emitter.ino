@@ -8,22 +8,24 @@
 Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
 
 /*
- * Generic STM32F103(BluePill/BlackPill/etc)
- * VCC  3.3V
- * MISO PA6
- * MOSI PA7
- * SCK  PA5
- * CE   PB0
- * CSN  PB1
+ * nRF24L01 STM32   UART
+ * VCC      3.3V
+ * CE       PB0
+ * CSN      PB1
+ * SCK      PA5
+ * MOSI     PA7
+ * MISO     PA6
+ *          PA9     TX
  */
  
 union MYDATA_t {
-  byte value[4];
-  unsigned long counter;
+  byte value[32];
+  char now_time[32];
 };
 
-
 MYDATA_t mydata;
+
+volatile int wakeup = 1;
 
 void setup()
 {
@@ -37,26 +39,24 @@ void setup()
   // Set destination address to TX_ADDR
   // Set ACK waiting address to RX_ADDR_P0
   Mirf.setTADDR((byte *)"FGHIJ");
-  mydata.counter = 0;
 }
 
 void loop()
 {
-  mydata.counter++;
+  sprintf(mydata.now_time,"wakeup is %d",wakeup);
   Mirf.send(mydata.value);
   Serial.print("Wait for sending.....");
   // Verify send was successfuly
   if (Mirf.isSend()) {
     Serial.print("Send success:");
-    Serial.println(mydata.counter);
+    Serial.println(mydata.now_time);
     Serial.flush();
   } else {
     Serial.println("Send fail:");
     Serial.flush();
   }
 
-  // Approximately 2 minutes interval
-  for(int i=0;i<60;i++) {
-    LowPower.deepSleep(1000); // DeepSleep 1000 MilllSec
-  }
+  uint32_t sleepMS = 1000 * 10;  // DeepSleep 10 Seconds
+  LowPower.deepSleep(sleepMS);
+  wakeup++;
 }
