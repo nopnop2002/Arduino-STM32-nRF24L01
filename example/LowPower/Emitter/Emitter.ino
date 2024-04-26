@@ -15,7 +15,6 @@ Nrf24l Mirf = Nrf24l(PB0, PB1); // CE,CSN
  * SCK      PA5
  * MOSI     PA7
  * MISO     PA6
- *          PA9     TX
  */
  
 union MYDATA_t {
