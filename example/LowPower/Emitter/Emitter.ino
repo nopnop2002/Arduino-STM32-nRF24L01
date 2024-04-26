@@ -1,6 +1,17 @@
-//Transmitter program
-//Supports only STM32
-//Don't work with PlatformIO
+/*
+  TimeWakeup
+
+  This sketch demonstrates the usage of Internal Interrupts to wakeup a chip
+  in deep sleep mode.
+
+  In this sketch, the internal RTC will wake up the processor every second.
+
+  This example code is in the public domain.
+
+  Supports only STM32
+  Don't work with PlatformIO
+
+*/
 
 #include "Mirf.h"
 #include "STM32LowPower.h" // https://github.com/stm32duino/STM32LowPower
