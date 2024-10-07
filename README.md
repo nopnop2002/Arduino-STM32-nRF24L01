@@ -56,7 +56,7 @@ I used [this](https://github.com/stm32duino/Arduino_Core_STM32).
 
 # Tested board
 
-- Arduino UNO
+- Arduino Uno(Nano, ProMini etc.)
 ```
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
  * VCC  3.3V
@@ -80,7 +80,7 @@ You will need to power it from the 5V pin using a regulator.
 
 
 
-- Arduino MEGA
+- Arduino Mega
 ```
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
  * VCC  3.3V
@@ -94,7 +94,7 @@ Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 Serial.print is output to Arduino Serial Monitor.
 
 
-- Arduino DUE
+- Arduino Due
 ```
 Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
  * VCC  3.3V
