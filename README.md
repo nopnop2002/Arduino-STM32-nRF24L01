@@ -80,7 +80,7 @@ You will need to power it from the 5V pin using a regulator.
 
 
 - Arduino Mega
-```
+	```
 	Nrf24l Mirf = Nrf24l(10, 9); // CE,CSN
 	 * VCC  3.3V
 	 * MISO 50
